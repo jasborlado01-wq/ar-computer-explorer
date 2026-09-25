@@ -1,0 +1,50 @@
+AR COMPUTER EXPLORER — PHONE TESTING
+
+IMPORTANT:
+The address 127.0.0.1:5500 works only on the computer running Live Server.
+For your phone, publish this folder on an HTTPS website.
+
+EASIEST SCHOOL-DEMO METHOD: GITHUB PAGES
+
+1. Create/sign in to a GitHub account.
+2. Create a new repository named:
+   ar-computer-explorer
+3. Upload these files from this folder:
+   index.html
+   style.css
+   script.js
+4. In the repository, open Settings > Pages.
+5. Under "Build and deployment", choose:
+   Deploy from a branch
+6. Select:
+   Branch: main
+   Folder: / (root)
+7. Save.
+8. Wait for GitHub Pages to publish the site.
+9. Open the HTTPS Pages link on your phone.
+10. Allow camera permission.
+11. Point the phone at the Hiro marker.
+12. Tap SYSTEM UNIT.
+13. Tap CPU/RAM/GPU/Motherboard/SSD/PSU for information.
+
+MARKER:
+This version intentionally uses the AR.js Hiro preset because it is built into AR.js and requires no .patt file.
+The official AR.js documentation lists Hiro, barcode, and pattern markers. Pattern markers require a generated .patt file.
+
+For the first test, use the standard Hiro marker.
+After the basic AR works, the project can be upgraded to a custom school/computer marker.
+
+LOCAL COMPUTER TEST:
+The project already works with VS Code Live Server at:
+http://127.0.0.1:5500/index.html
+
+PHONE:
+Do NOT use 127.0.0.1 from the phone. That address points back to the phone itself.
+Use the HTTPS published URL instead.
+
+OFFICIAL REFERENCES:
+AR.js marker documentation:
+https://ar-js-org.github.io/AR.js-Docs/marker-based/
+
+AR.js Studio marker page:
+https://ar-js-org.github.io/studio/pages/marker/index.html
