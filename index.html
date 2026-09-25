@@ -14,48 +14,40 @@
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.5/aframe/build/aframe-ar.js"></script>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
         body {
             margin: 0;
             overflow: hidden;
             font-family: Arial, sans-serif;
         }
 
-        /* TITLE */
         #title {
             position: fixed;
             top: 18px;
             left: 50%;
             transform: translateX(-50%);
-
             z-index: 10;
 
-            width: 280px;
-            padding: 12px 15px;
-
-            background: rgba(0, 0, 0, 0.78);
+            background: rgba(10, 15, 22, 0.88);
             color: white;
 
-            border-radius: 16px;
+            padding: 12px 22px;
+            border-radius: 15px;
 
-            text-align: center;
             font-size: 19px;
             font-weight: bold;
+            text-align: center;
+
+            white-space: nowrap;
         }
 
-        /* INSTRUCTION */
         #instruction {
             position: fixed;
             bottom: 18px;
             left: 50%;
             transform: translateX(-50%);
-
             z-index: 10;
 
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.78);
             color: white;
 
             padding: 10px 16px;
@@ -65,34 +57,31 @@
             text-align: center;
         }
 
-        /* INFORMATION PANEL */
         #infoPanel {
             display: none;
 
             position: fixed;
+            bottom: 70px;
             left: 50%;
-            bottom: 75px;
             transform: translateX(-50%);
 
-            width: 88%;
+            width: 86%;
             max-width: 420px;
 
-            z-index: 30;
+            z-index: 20;
 
-            background: rgba(15, 20, 28, 0.95);
+            background: rgba(12, 18, 25, 0.96);
             color: white;
 
-            border-radius: 18px;
             padding: 18px;
+            border-radius: 18px;
 
             text-align: center;
-
-            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
         }
 
         #infoPanel h2 {
-            margin: 0 0 10px 0;
-            color: #4dd9ff;
+            color: #35d9ff;
+            margin: 0 0 10px;
         }
 
         #infoPanel p {
@@ -102,34 +91,27 @@
 
         #closeInfo {
             margin-top: 15px;
+            padding: 9px 24px;
 
             border: none;
             border-radius: 10px;
 
-            padding: 9px 22px;
+            background: #35d9ff;
+            color: #111;
 
             font-weight: bold;
-
-            background: #4dd9ff;
-            color: #111;
         }
     </style>
 </head>
 
-
 <body>
 
-    <!-- TITLE -->
     <div id="title">
         🖥️ AR COMPUTER EXPLORER
     </div>
 
-    <!-- INFORMATION PANEL -->
     <div id="infoPanel">
-
-        <h2 id="componentTitle">
-            Computer Component
-        </h2>
+        <h2 id="componentTitle">Computer Component</h2>
 
         <p id="componentDescription">
             Component information
@@ -138,18 +120,16 @@
         <button id="closeInfo">
             CLOSE
         </button>
-
     </div>
 
-    <!-- INSTRUCTION -->
     <div id="instruction">
         📷 Scan the HIRO marker
     </div>
 
 
-    <!-- ============================= -->
+    <!-- ============================== -->
     <!-- AR SCENE -->
-    <!-- ============================= -->
+    <!-- ============================== -->
 
     <a-scene
         embedded
@@ -170,10 +150,9 @@
         device-orientation-permission-ui="enabled: false"
     >
 
-
-        <!-- ============================= -->
+        <!-- ============================== -->
         <!-- HIRO MARKER -->
-        <!-- ============================= -->
+        <!-- ============================== -->
 
         <a-marker
             id="computerMarker"
@@ -187,82 +166,74 @@
             smoothThreshold="5"
         >
 
-
             <!-- ================================= -->
-            <!-- ENTIRE COMPUTER -->
+            <!-- FRONT-FACING 3D COMPUTER -->
             <!-- ================================= -->
 
             <a-entity
                 id="computer"
                 position="0 0.05 0"
                 rotation="0 0 0"
-                scale="0.22 0.22 0.22"
+                scale="0.23 0.23 0.23"
             >
-
 
                 <!-- ================================= -->
                 <!-- MONITOR -->
                 <!-- ================================= -->
 
-                <!-- Monitor outer frame -->
+                <!-- Monitor body -->
                 <a-box
-                    position="0 2.55 0"
-                    width="4.4"
-                    height="2.6"
-                    depth="0.25"
-                    color="#1b1f24"
-                >
-                </a-box>
+                    position="0 2.45 0"
+                    width="4.6"
+                    height="2.7"
+                    depth="0.45"
+                    color="#20252b"
+                ></a-box>
 
-                <!-- Monitor screen -->
+                <!-- Screen -->
                 <a-box
-                    position="0 2.55 0.15"
-                    width="3.95"
-                    height="2.15"
+                    position="0 2.45 0.27"
+                    width="4.15"
+                    height="2.25"
                     depth="0.08"
-                    color="#111820"
-                >
-                </a-box>
+                    color="#0c1720"
+                ></a-box>
 
-                <!-- Screen display -->
+                <!-- Blue display -->
                 <a-box
-                    position="0 2.55 0.20"
-                    width="3.55"
-                    height="1.75"
+                    position="0 2.45 0.33"
+                    width="3.75"
+                    height="1.88"
                     depth="0.04"
                     color="#1976d2"
-                >
-                </a-box>
+                ></a-box>
 
-                <!-- Screen shine -->
+                <!-- Display highlight -->
                 <a-box
-                    position="-0.7 2.85 0.23"
-                    width="1.4"
-                    height="0.12"
+                    position="-0.85 2.83 0.37"
+                    width="1.3"
+                    height="0.08"
                     depth="0.02"
-                    color="#62d8ff"
-                >
-                </a-box>
+                    color="#8eeaff"
+                ></a-box>
 
                 <!-- Monitor stand -->
                 <a-box
-                    position="0 1.15 0"
-                    width="0.38"
-                    height="1.1"
-                    depth="0.35"
-                    color="#252a30"
-                >
-                </a-box>
+                    position="0 1.05 0"
+                    width="0.42"
+                    height="1.15"
+                    depth="0.42"
+                    color="#292f35"
+                ></a-box>
 
                 <!-- Monitor base -->
                 <a-box
-                    position="0 0.58 0"
+                    position="0 0.47 0"
                     width="1.7"
                     height="0.16"
-                    depth="0.75"
-                    color="#252a30"
-                >
-                </a-box>
+                    depth="0.8"
+                    color="#292f35"
+                ></a-box>
 
 
                 <!-- ================================= -->
@@ -272,89 +243,80 @@
                 <a-box
                     id="systemUnit"
                     class="clickable"
+
                     data-component="System Unit"
 
-                    position="3.05 1.05 0"
+                    position="3.05 1.20 0"
 
-                    width="1.65"
-                    height="3.0"
+                    width="1.75"
+                    height="3.25"
                     depth="1.65"
 
-                    color="#252a30"
-                >
-                </a-box>
+                    color="#292e34"
+                ></a-box>
 
-
-                <!-- System unit front -->
+                <!-- Front panel -->
                 <a-box
-                    position="3.05 1.05 0.86"
+                    position="3.05 1.20 0.85"
 
-                    width="1.35"
-                    height="2.7"
+                    width="1.42"
+                    height="2.95"
                     depth="0.08"
 
-                    color="#161a1e"
-                >
-                </a-box>
-
+                    color="#15191d"
+                ></a-box>
 
                 <!-- Power button -->
                 <a-cylinder
-                    position="3.05 2.10 0.92"
+                    position="3.05 2.25 0.93"
 
-                    radius="0.12"
+                    radius="0.13"
                     height="0.05"
 
                     rotation="90 0 0"
 
-                    color="#36e58a"
-                >
-                </a-cylinder>
+                    color="#35e58a"
+                ></a-cylinder>
 
-
-                <!-- USB ports -->
+                <!-- Drive bay -->
                 <a-box
-                    position="2.72 1.70 0.92"
-                    width="0.25"
-                    height="0.07"
+                    position="3.05 1.72 0.93"
+
+                    width="0.82"
+                    height="0.13"
                     depth="0.04"
-                    color="#777777"
-                >
-                </a-box>
+
+                    color="#555d65"
+                ></a-box>
+
+                <!-- USB -->
+                <a-box
+                    position="2.75 1.48 0.93"
+                    width="0.22"
+                    height="0.08"
+                    depth="0.04"
+                    color="#777"
+                ></a-box>
 
                 <a-box
-                    position="3.08 1.70 0.92"
-                    width="0.25"
-                    height="0.07"
+                    position="3.08 1.48 0.93"
+                    width="0.22"
+                    height="0.08"
                     depth="0.04"
-                    color="#777777"
-                >
-                </a-box>
+                    color="#777"
+                ></a-box>
 
-
-                <!-- Drive slot -->
-                <a-box
-                    position="3.05 1.38 0.92"
-                    width="0.75"
-                    height="0.12"
-                    depth="0.04"
-                    color="#555b61"
-                >
-                </a-box>
-
-
-                <!-- SYSTEM UNIT LABEL -->
+                <!-- System Unit label -->
                 <a-text
                     value="SYSTEM UNIT"
-                    position="3.05 3.0 0.92"
+                    position="3.05 3.05 0.94"
 
                     align="center"
 
-                    color="#4dd9ff"
+                    color="#35d9ff"
 
-                    width="2.6"
-                >
-                </a-text>
+                    width="2.5"
+                ></a-text>
 
 
                 <!-- ================================= -->
@@ -362,27 +324,25 @@
                 <!-- ================================= -->
 
                 <a-box
-                    position="0 -0.05 1.25"
+                    position="0 -0.02 1.20"
 
-                    width="3.9"
-                    height="0.16"
-                    depth="1.15"
+                    width="4.0"
+                    height="0.15"
+                    depth="1.0"
 
-                    color="#20252a"
-                >
-                </a-box>
+                    color="#24292e"
+                ></a-box>
 
-                <!-- Keyboard top -->
+                <!-- Keyboard surface -->
                 <a-box
-                    position="0 0.05 1.25"
+                    position="0 0.07 1.20"
 
-                    width="3.55"
+                    width="3.65"
                     height="0.04"
-                    depth="0.85"
+                    depth="0.78"
 
-                    color="#343a40"
-                >
-                </a-box>
+                    color="#3b4147"
+                ></a-box>
 
 
                 <!-- ================================= -->
@@ -390,163 +350,159 @@
                 <!-- ================================= -->
 
                 <a-box
-                    position="2.25 0.03 1.25"
+                    position="2.25 0.03 1.20"
 
-                    width="0.65"
-                    height="0.18"
-                    depth="0.85"
+                    width="0.60"
+                    height="0.16"
+                    depth="0.75"
 
-                    color="#343a40"
-                >
-                </a-box>
+                    color="#353b41"
+                ></a-box>
 
 
                 <!-- ================================= -->
-                <!-- INTERNAL COMPUTER PARTS -->
+                <!-- INTERNAL COMPONENTS -->
                 <!-- ================================= -->
 
                 <a-entity
                     id="internals"
                     visible="false"
 
-                    position="3.05 1.05 0"
+                    position="3.05 1.20 0"
                 >
-
 
                     <!-- Motherboard -->
                     <a-box
                         class="clickable"
+
                         data-component="Motherboard"
 
-                        position="0 0 0"
+                        position="0 0 0.05"
 
-                        width="1.25"
-                        height="2.35"
-                        depth="0.08"
+                        width="1.35"
+                        height="2.65"
+                        depth="0.10"
 
                         color="#176b3a"
-                    >
-                    </a-box>
+                    ></a-box>
 
 
                     <!-- CPU -->
                     <a-box
                         class="clickable"
+
                         data-component="CPU"
 
-                        position="-0.25 0.35 0.15"
+                        position="-0.25 0.45 0.20"
 
-                        width="0.45"
-                        height="0.45"
+                        width="0.48"
+                        height="0.48"
                         depth="0.18"
 
-                        color="#8b8f94"
-                    >
-                    </a-box>
+                        color="#999ea3"
+                    ></a-box>
 
 
-                    <!-- CPU fan -->
+                    <!-- CPU FAN -->
                     <a-cylinder
                         class="clickable"
+
                         data-component="CPU Fan"
 
-                        position="-0.25 0.35 0.28"
+                        position="-0.25 0.45 0.34"
 
-                        radius="0.24"
+                        radius="0.25"
                         height="0.10"
 
                         color="#20252a"
-                    >
-                    </a-cylinder>
+                    ></a-cylinder>
 
 
                     <!-- RAM -->
                     <a-box
                         class="clickable"
+
                         data-component="RAM"
 
-                        position="0.25 0.45 0.15"
+                        position="0.30 0.50 0.18"
 
                         width="0.13"
-                        height="1.05"
-                        depth="0.12"
+                        height="1.15"
+                        depth="0.13"
 
-                        color="#111111"
-                    >
-                    </a-box>
+                        color="#111"
+                    ></a-box>
 
                     <a-box
-                        position="0.25 0.45 0.23"
+                        position="0.30 0.50 0.27"
 
                         width="0.07"
-                        height="0.85"
+                        height="0.95"
                         depth="0.03"
 
-                        color="#28a745"
-                    >
-                    </a-box>
+                        color="#29a957"
+                    ></a-box>
 
 
                     <!-- GPU -->
                     <a-box
                         class="clickable"
+
                         data-component="GPU"
 
-                        position="0 -0.45 0.18"
+                        position="0 -0.40 0.22"
 
-                        width="1.05"
-                        height="0.32"
-                        depth="0.35"
+                        width="1.12"
+                        height="0.34"
+                        depth="0.38"
 
                         color="#343a40"
-                    >
-                    </a-box>
+                    ></a-box>
 
 
                     <!-- SSD -->
                     <a-box
                         class="clickable"
+
                         data-component="SSD / Storage"
 
-                        position="0.30 -0.05 0.22"
+                        position="0.35 -0.05 0.25"
 
-                        width="0.55"
+                        width="0.58"
                         height="0.30"
-                        depth="0.12"
+                        depth="0.14"
 
-                        color="#bfc4c8"
-                    >
-                    </a-box>
+                        color="#c4c8cc"
+                    ></a-box>
 
 
                     <!-- PSU -->
                     <a-box
                         class="clickable"
+
                         data-component="Power Supply Unit"
 
-                        position="0 -0.82 0.15"
+                        position="0 -0.92 0.20"
 
-                        width="1.05"
-                        height="0.48"
-                        depth="0.75"
+                        width="1.12"
+                        height="0.50"
+                        depth="0.78"
 
-                        color="#444a50"
-                    >
-                    </a-box>
+                        color="#464d54"
+                    ></a-box>
 
 
-                    <!-- INTERNAL LABEL -->
+                    <!-- Internal label -->
                     <a-text
                         value="MOTHERBOARD"
-                        position="0 1.45 0.10"
+                        position="0 1.55 0.20"
 
                         align="center"
 
                         color="#ffffff"
 
-                        width="2.4"
-                    >
-                    </a-text>
+                        width="2.3"
+                    ></a-text>
 
                 </a-entity>
 
@@ -556,17 +512,15 @@
                 <!-- ================================= -->
 
                 <a-text
-                    value="COMPUTER"
+                    value="3D COMPUTER"
                     position="0 4.0 0"
 
                     align="center"
 
                     color="#ffffff"
 
-                    width="4"
-                >
-                </a-text>
-
+                    width="3.5"
+                ></a-text>
 
             </a-entity>
 
@@ -574,7 +528,11 @@
 
 
         <!-- CAMERA -->
-        <a-entity camera></a-entity>
+        <a-entity
+            camera
+            cursor="rayOrigin: mouse"
+            raycaster="objects: .clickable"
+        ></a-entity>
 
     </a-scene>
 
@@ -585,11 +543,11 @@
 
     <script>
 
-        const computer =
-            document.querySelector("#computer");
-
         const marker =
             document.querySelector("#computerMarker");
+
+        const computer =
+            document.querySelector("#computer");
 
         const systemUnit =
             document.querySelector("#systemUnit");
@@ -610,48 +568,43 @@
             document.querySelector("#closeInfo");
 
 
-        /* =====================================
+        /* =================================
            COMPONENT INFORMATION
-        ===================================== */
+        ================================= */
 
         const descriptions = {
 
             "System Unit":
-                "The system unit is the main case of a computer. It contains the major internal components that allow the computer to operate.",
+                "The system unit is the main computer case. It contains the important internal components of a computer.",
 
             "Motherboard":
-                "The motherboard is the main circuit board. It connects the CPU, RAM, storage, GPU and other components.",
+                "The motherboard is the main circuit board that connects the CPU, RAM, storage, GPU and other components.",
 
             "CPU":
-                "The CPU, or Central Processing Unit, executes instructions and performs calculations needed by the computer.",
+                "The CPU or Central Processing Unit processes instructions and performs calculations.",
 
             "CPU Fan":
-                "The CPU fan removes heat from the processor and helps prevent overheating.",
+                "The CPU fan cools the processor and helps prevent overheating.",
 
             "RAM":
-                "RAM, or Random Access Memory, temporarily stores data and programs currently being used by the computer.",
+                "RAM or Random Access Memory temporarily stores data and programs currently being used.",
 
             "GPU":
-                "The GPU, or Graphics Processing Unit, processes graphics, images and video.",
+                "The GPU or Graphics Processing Unit processes graphics, images and video.",
 
             "SSD / Storage":
-                "An SSD stores the operating system, applications and personal files even when the computer is turned off.",
+                "SSD storage keeps the operating system, applications and files even when the computer is turned off.",
 
             "Power Supply Unit":
-                "The Power Supply Unit, or PSU, converts electrical power into the voltages required by the computer's components."
+                "The PSU converts electrical power into the voltages required by the computer components."
         };
 
 
-        /* =====================================
-           SYSTEM UNIT CLICK
-        ===================================== */
+        /* =================================
+           SYSTEM UNIT
+        ================================= */
 
         systemUnit.addEventListener("click", function () {
-
-            /*
-                Hide the outer case
-                and reveal the internal components.
-            */
 
             systemUnit.setAttribute(
                 "visible",
@@ -674,9 +627,9 @@
         });
 
 
-        /* =====================================
-           INTERNAL COMPONENT CLICK
-        ===================================== */
+        /* =================================
+           INTERNAL COMPONENTS
+        ================================= */
 
         document
             .querySelectorAll(".clickable")
@@ -697,8 +650,7 @@
                             name;
 
                         componentDescription.innerText =
-                            descriptions[name] ||
-                            "Information about this computer component.";
+                            descriptions[name];
 
                         infoPanel.style.display =
                             "block";
@@ -708,9 +660,9 @@
             });
 
 
-        /* =====================================
+        /* =================================
            CLOSE INFO
-        ===================================== */
+        ================================= */
 
         closeInfo.addEventListener(
             "click",
@@ -723,30 +675,30 @@
         );
 
 
-        /* =====================================
-           MARKER DETECTED
-        ===================================== */
+        /* =================================
+           MARKER FOUND
+        ================================= */
 
         marker.addEventListener(
             "markerFound",
             function () {
-
-                console.log(
-                    "HIRO MARKER FOUND"
-                );
 
                 computer.setAttribute(
                     "visible",
                     "true"
                 );
 
+                console.log(
+                    "HIRO MARKER FOUND"
+                );
+
             }
         );
 
 
-        /* =====================================
+        /* =================================
            MARKER LOST
-        ===================================== */
+        ================================= */
 
         marker.addEventListener(
             "markerLost",
