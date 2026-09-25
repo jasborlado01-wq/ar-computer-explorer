@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -15,87 +14,108 @@
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.5/aframe/build/aframe-ar.js"></script>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             overflow: hidden;
             font-family: Arial, sans-serif;
         }
 
+        /* TITLE */
         #title {
             position: fixed;
-            top: 15px;
+            top: 18px;
             left: 50%;
             transform: translateX(-50%);
+
+            z-index: 10;
+
+            width: 280px;
+            padding: 12px 15px;
+
+            background: rgba(0, 0, 0, 0.78);
+            color: white;
+
+            border-radius: 16px;
+
+            text-align: center;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        /* INSTRUCTION */
+        #instruction {
+            position: fixed;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+
             z-index: 10;
 
             background: rgba(0, 0, 0, 0.75);
             color: white;
 
-            padding: 10px 18px;
+            padding: 10px 16px;
             border-radius: 12px;
 
-            font-size: 18px;
-            font-weight: bold;
-
+            font-size: 13px;
             text-align: center;
         }
 
+        /* INFORMATION PANEL */
         #infoPanel {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-
-            width: 85%;
-            max-width: 400px;
-
-            background: rgba(0, 0, 0, 0.85);
-            color: white;
-
-            padding: 15px;
-            border-radius: 15px;
-
-            z-index: 20;
             display: none;
 
+            position: fixed;
+            left: 50%;
+            bottom: 75px;
+            transform: translateX(-50%);
+
+            width: 88%;
+            max-width: 420px;
+
+            z-index: 30;
+
+            background: rgba(15, 20, 28, 0.95);
+            color: white;
+
+            border-radius: 18px;
+            padding: 18px;
+
             text-align: center;
+
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
         }
 
         #infoPanel h2 {
-            margin-top: 0;
-            color: #00ffff;
+            margin: 0 0 10px 0;
+            color: #4dd9ff;
+        }
+
+        #infoPanel p {
+            line-height: 1.5;
+            margin: 0;
         }
 
         #closeInfo {
-            margin-top: 10px;
-            padding: 8px 18px;
+            margin-top: 15px;
 
             border: none;
-            border-radius: 8px;
-
-            background: #ffffff;
-            color: black;
-
-            font-weight: bold;
-        }
-
-        #instructions {
-            position: fixed;
-            bottom: 15px;
-            right: 15px;
-
-            z-index: 10;
-
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-
-            padding: 8px 12px;
             border-radius: 10px;
 
-            font-size: 12px;
+            padding: 9px 22px;
+
+            font-weight: bold;
+
+            background: #4dd9ff;
+            color: #111;
         }
     </style>
 </head>
+
 
 <body>
 
@@ -104,25 +124,33 @@
         🖥️ AR COMPUTER EXPLORER
     </div>
 
-    <!-- INFO PANEL -->
+    <!-- INFORMATION PANEL -->
     <div id="infoPanel">
-        <h2 id="componentTitle">Computer Component</h2>
+
+        <h2 id="componentTitle">
+            Computer Component
+        </h2>
 
         <p id="componentDescription">
-            Component information will appear here.
+            Component information
         </p>
 
         <button id="closeInfo">
             CLOSE
         </button>
+
     </div>
 
-    <div id="instructions">
-        Scan the HIRO marker 📷
+    <!-- INSTRUCTION -->
+    <div id="instruction">
+        📷 Scan the HIRO marker
     </div>
 
 
+    <!-- ============================= -->
     <!-- AR SCENE -->
+    <!-- ============================= -->
+
     <a-scene
         embedded
         vr-mode-ui="enabled: false"
@@ -142,317 +170,435 @@
         device-orientation-permission-ui="enabled: false"
     >
 
-        <!-- CAMERA -->
-        <a-entity camera></a-entity>
 
-
+        <!-- ============================= -->
         <!-- HIRO MARKER -->
+        <!-- ============================= -->
+
         <a-marker
             id="computerMarker"
             preset="hiro"
+
             emitevents="true"
+
             smooth="true"
             smoothCount="10"
             smoothTolerance="0.01"
             smoothThreshold="5"
         >
 
-            <!--
-                MAIN COMPUTER GROUP
 
-                IMPORTANT:
-                The computer is centered at 0 0 0
-                relative to the Hiro marker.
-            -->
+            <!-- ================================= -->
+            <!-- ENTIRE COMPUTER -->
+            <!-- ================================= -->
+
             <a-entity
                 id="computer"
-                position="0 0 0"
+                position="0 0.05 0"
                 rotation="0 0 0"
-                scale="0.35 0.35 0.35"
+                scale="0.22 0.22 0.22"
             >
 
-                <!-- ========================= -->
-                <!-- MONITOR -->
-                <!-- ========================= -->
 
-                <!-- Monitor frame -->
+                <!-- ================================= -->
+                <!-- MONITOR -->
+                <!-- ================================= -->
+
+                <!-- Monitor outer frame -->
                 <a-box
-                    position="0 1.75 0"
-                    width="2.8"
-                    height="1.7"
-                    depth="0.18"
-                    color="#222222"
+                    position="0 2.55 0"
+                    width="4.4"
+                    height="2.6"
+                    depth="0.25"
+                    color="#1b1f24"
                 >
                 </a-box>
 
                 <!-- Monitor screen -->
                 <a-box
-                    position="0 1.75 0.11"
-                    width="2.45"
-                    height="1.35"
-                    depth="0.03"
-                    color="#1683d8"
+                    position="0 2.55 0.15"
+                    width="3.95"
+                    height="2.15"
+                    depth="0.08"
+                    color="#111820"
                 >
                 </a-box>
 
-                <!-- Screen glow -->
+                <!-- Screen display -->
                 <a-box
-                    position="0 1.75 0.14"
-                    width="2.20"
-                    height="1.10"
+                    position="0 2.55 0.20"
+                    width="3.55"
+                    height="1.75"
+                    depth="0.04"
+                    color="#1976d2"
+                >
+                </a-box>
+
+                <!-- Screen shine -->
+                <a-box
+                    position="-0.7 2.85 0.23"
+                    width="1.4"
+                    height="0.12"
                     depth="0.02"
-                    color="#55c7ff"
+                    color="#62d8ff"
                 >
                 </a-box>
 
                 <!-- Monitor stand -->
                 <a-box
-                    position="0 0.75 0"
-                    width="0.35"
-                    height="0.75"
+                    position="0 1.15 0"
+                    width="0.38"
+                    height="1.1"
                     depth="0.35"
-                    color="#333333"
+                    color="#252a30"
                 >
                 </a-box>
 
                 <!-- Monitor base -->
                 <a-box
-                    position="0 0.38 0"
-                    width="1.25"
-                    height="0.12"
-                    depth="0.55"
-                    color="#333333"
+                    position="0 0.58 0"
+                    width="1.7"
+                    height="0.16"
+                    depth="0.75"
+                    color="#252a30"
                 >
                 </a-box>
 
 
-                <!-- ========================= -->
-                <!-- SYSTEM UNIT / CASE -->
-                <!-- ========================= -->
+                <!-- ================================= -->
+                <!-- SYSTEM UNIT -->
+                <!-- ================================= -->
 
                 <a-box
                     id="systemUnit"
-                    class="component"
+                    class="clickable"
                     data-component="System Unit"
-                    position="2.05 0.95 0"
-                    width="1.35"
-                    height="2.2"
-                    depth="1.35"
-                    color="#303030"
+
+                    position="3.05 1.05 0"
+
+                    width="1.65"
+                    height="3.0"
+                    depth="1.65"
+
+                    color="#252a30"
                 >
                 </a-box>
 
-                <!-- Front panel -->
+
+                <!-- System unit front -->
                 <a-box
-                    position="2.05 1.05 0.69"
-                    width="1.05"
-                    height="1.8"
-                    depth="0.05"
-                    color="#1a1a1a"
+                    position="3.05 1.05 0.86"
+
+                    width="1.35"
+                    height="2.7"
+                    depth="0.08"
+
+                    color="#161a1e"
                 >
                 </a-box>
+
 
                 <!-- Power button -->
                 <a-cylinder
-                    position="2.05 1.75 0.73"
+                    position="3.05 2.10 0.92"
+
+                    radius="0.12"
+                    height="0.05"
+
                     rotation="90 0 0"
-                    radius="0.10"
-                    height="0.03"
-                    color="#00ff88"
+
+                    color="#36e58a"
                 >
                 </a-cylinder>
 
-                <!-- Drive bay -->
+
+                <!-- USB ports -->
                 <a-box
-                    position="2.05 1.40 0.73"
-                    width="0.65"
+                    position="2.72 1.70 0.92"
+                    width="0.25"
+                    height="0.07"
+                    depth="0.04"
+                    color="#777777"
+                >
+                </a-box>
+
+                <a-box
+                    position="3.08 1.70 0.92"
+                    width="0.25"
+                    height="0.07"
+                    depth="0.04"
+                    color="#777777"
+                >
+                </a-box>
+
+
+                <!-- Drive slot -->
+                <a-box
+                    position="3.05 1.38 0.92"
+                    width="0.75"
                     height="0.12"
                     depth="0.04"
-                    color="#666666"
+                    color="#555b61"
                 >
                 </a-box>
 
 
-                <!-- ========================= -->
+                <!-- SYSTEM UNIT LABEL -->
+                <a-text
+                    value="SYSTEM UNIT"
+                    position="3.05 3.0 0.92"
+
+                    align="center"
+
+                    color="#4dd9ff"
+
+                    width="2.6"
+                >
+                </a-text>
+
+
+                <!-- ================================= -->
                 <!-- KEYBOARD -->
-                <!-- ========================= -->
+                <!-- ================================= -->
 
                 <a-box
-                    position="0 -0.02 0.75"
-                    width="2.7"
-                    height="0.12"
-                    depth="0.9"
-                    color="#252525"
+                    position="0 -0.05 1.25"
+
+                    width="3.9"
+                    height="0.16"
+                    depth="1.15"
+
+                    color="#20252a"
+                >
+                </a-box>
+
+                <!-- Keyboard top -->
+                <a-box
+                    position="0 0.05 1.25"
+
+                    width="3.55"
+                    height="0.04"
+                    depth="0.85"
+
+                    color="#343a40"
                 >
                 </a-box>
 
 
-                <!-- ========================= -->
+                <!-- ================================= -->
                 <!-- MOUSE -->
-                <!-- ========================= -->
+                <!-- ================================= -->
 
                 <a-box
-                    position="1.65 0.05 0.75"
-                    width="0.45"
-                    height="0.12"
-                    depth="0.60"
-                    color="#444444"
+                    position="2.25 0.03 1.25"
+
+                    width="0.65"
+                    height="0.18"
+                    depth="0.85"
+
+                    color="#343a40"
                 >
                 </a-box>
 
 
-                <!-- ========================= -->
-                <!-- INTERNAL COMPONENTS -->
-                <!-- ========================= -->
+                <!-- ================================= -->
+                <!-- INTERNAL COMPUTER PARTS -->
+                <!-- ================================= -->
 
                 <a-entity
                     id="internals"
                     visible="false"
-                    position="2.05 0.95 0"
+
+                    position="3.05 1.05 0"
                 >
+
 
                     <!-- Motherboard -->
                     <a-box
-                        class="component"
+                        class="clickable"
                         data-component="Motherboard"
-                        position="0 0 0.72"
-                        width="1.0"
-                        height="1.6"
+
+                        position="0 0 0"
+
+                        width="1.25"
+                        height="2.35"
                         depth="0.08"
-                        color="#176b35"
+
+                        color="#176b3a"
                     >
                     </a-box>
 
 
                     <!-- CPU -->
                     <a-box
-                        class="component"
+                        class="clickable"
                         data-component="CPU"
-                        position="-0.20 0.35 0.82"
-                        width="0.35"
-                        height="0.35"
-                        depth="0.12"
-                        color="#777777"
+
+                        position="-0.25 0.35 0.15"
+
+                        width="0.45"
+                        height="0.45"
+                        depth="0.18"
+
+                        color="#8b8f94"
                     >
                     </a-box>
 
 
-                    <!-- CPU Fan -->
+                    <!-- CPU fan -->
                     <a-cylinder
-                        class="component"
+                        class="clickable"
                         data-component="CPU Fan"
-                        position="-0.20 0.35 0.90"
-                        radius="0.18"
-                        height="0.08"
-                        color="#222222"
+
+                        position="-0.25 0.35 0.28"
+
+                        radius="0.24"
+                        height="0.10"
+
+                        color="#20252a"
                     >
                     </a-cylinder>
 
 
                     <!-- RAM -->
                     <a-box
-                        class="component"
+                        class="clickable"
                         data-component="RAM"
-                        position="0.25 0.35 0.82"
-                        width="0.10"
-                        height="0.85"
-                        depth="0.08"
+
+                        position="0.25 0.45 0.15"
+
+                        width="0.13"
+                        height="1.05"
+                        depth="0.12"
+
                         color="#111111"
                     >
                     </a-box>
 
                     <a-box
-                        position="0.25 0.35 0.87"
-                        width="0.05"
-                        height="0.70"
-                        depth="0.02"
-                        color="#00aa66"
+                        position="0.25 0.45 0.23"
+
+                        width="0.07"
+                        height="0.85"
+                        depth="0.03"
+
+                        color="#28a745"
                     >
                     </a-box>
 
 
                     <!-- GPU -->
                     <a-box
-                        class="component"
+                        class="clickable"
                         data-component="GPU"
-                        position="0 -0.35 0.85"
-                        width="0.80"
-                        height="0.25"
-                        depth="0.20"
-                        color="#333333"
+
+                        position="0 -0.45 0.18"
+
+                        width="1.05"
+                        height="0.32"
+                        depth="0.35"
+
+                        color="#343a40"
                     >
                     </a-box>
 
 
                     <!-- SSD -->
                     <a-box
-                        class="component"
+                        class="clickable"
                         data-component="SSD / Storage"
-                        position="0.35 -0.05 0.85"
-                        width="0.40"
-                        height="0.25"
-                        depth="0.08"
-                        color="#aaaaaa"
+
+                        position="0.30 -0.05 0.22"
+
+                        width="0.55"
+                        height="0.30"
+                        depth="0.12"
+
+                        color="#bfc4c8"
                     >
                     </a-box>
 
 
                     <!-- PSU -->
                     <a-box
-                        class="component"
+                        class="clickable"
                         data-component="Power Supply Unit"
-                        position="0 -0.70 0.85"
-                        width="0.75"
-                        height="0.40"
-                        depth="0.65"
-                        color="#444444"
+
+                        position="0 -0.82 0.15"
+
+                        width="1.05"
+                        height="0.48"
+                        depth="0.75"
+
+                        color="#444a50"
                     >
                     </a-box>
+
+
+                    <!-- INTERNAL LABEL -->
+                    <a-text
+                        value="MOTHERBOARD"
+                        position="0 1.45 0.10"
+
+                        align="center"
+
+                        color="#ffffff"
+
+                        width="2.4"
+                    >
+                    </a-text>
 
                 </a-entity>
 
 
-                <!-- ========================= -->
-                <!-- LABELS -->
-                <!-- ========================= -->
-
-                <a-text
-                    value="SYSTEM UNIT"
-                    position="2.05 2.25 0"
-                    align="center"
-                    color="#00ffff"
-                    width="2.5"
-                >
-                </a-text>
+                <!-- ================================= -->
+                <!-- COMPUTER LABEL -->
+                <!-- ================================= -->
 
                 <a-text
                     value="COMPUTER"
-                    position="0 2.85 0"
+                    position="0 4.0 0"
+
                     align="center"
+
                     color="#ffffff"
-                    width="3"
+
+                    width="4"
                 >
                 </a-text>
+
 
             </a-entity>
 
         </a-marker>
 
+
+        <!-- CAMERA -->
+        <a-entity camera></a-entity>
+
     </a-scene>
 
 
+    <!-- ================================= -->
     <!-- JAVASCRIPT -->
+    <!-- ================================= -->
+
     <script>
 
-        const marker = document.querySelector("#computerMarker");
+        const computer =
+            document.querySelector("#computer");
 
-        const computer = document.querySelector("#computer");
+        const marker =
+            document.querySelector("#computerMarker");
 
-        const systemUnit = document.querySelector("#systemUnit");
+        const systemUnit =
+            document.querySelector("#systemUnit");
 
-        const internals = document.querySelector("#internals");
+        const internals =
+            document.querySelector("#internals");
 
-        const infoPanel = document.querySelector("#infoPanel");
+        const infoPanel =
+            document.querySelector("#infoPanel");
 
         const componentTitle =
             document.querySelector("#componentTitle");
@@ -464,118 +610,154 @@
             document.querySelector("#closeInfo");
 
 
-        // ==========================================
-        // COMPONENT INFORMATION
-        // ==========================================
+        /* =====================================
+           COMPONENT INFORMATION
+        ===================================== */
 
         const descriptions = {
 
             "System Unit":
-                "The system unit is the main computer case that contains important internal components.",
+                "The system unit is the main case of a computer. It contains the major internal components that allow the computer to operate.",
 
             "Motherboard":
-                "The motherboard is the main circuit board that connects the CPU, RAM, storage, GPU and other components.",
+                "The motherboard is the main circuit board. It connects the CPU, RAM, storage, GPU and other components.",
 
             "CPU":
-                "The CPU or Central Processing Unit processes instructions and performs calculations for the computer.",
+                "The CPU, or Central Processing Unit, executes instructions and performs calculations needed by the computer.",
 
             "CPU Fan":
-                "The CPU fan helps cool the processor and prevents it from overheating.",
+                "The CPU fan removes heat from the processor and helps prevent overheating.",
 
             "RAM":
-                "RAM or Random Access Memory temporarily stores data and programs that the computer is currently using.",
+                "RAM, or Random Access Memory, temporarily stores data and programs currently being used by the computer.",
 
             "GPU":
-                "The GPU or Graphics Processing Unit processes images, videos and graphics.",
+                "The GPU, or Graphics Processing Unit, processes graphics, images and video.",
 
             "SSD / Storage":
-                "SSD storage keeps files, applications and the operating system even when the computer is turned off.",
+                "An SSD stores the operating system, applications and personal files even when the computer is turned off.",
 
             "Power Supply Unit":
-                "The PSU converts electrical power into the appropriate voltages needed by the computer components."
+                "The Power Supply Unit, or PSU, converts electrical power into the voltages required by the computer's components."
         };
 
 
-        // ==========================================
-        // OPEN COMPONENT INFORMATION
-        // ==========================================
-
-        document.querySelectorAll(".component")
-            .forEach(component => {
-
-                component.addEventListener("click", function () {
-
-                    const name =
-                        this.getAttribute("data-component");
-
-                    componentTitle.innerText = name;
-
-                    componentDescription.innerText =
-                        descriptions[name] ||
-                        "Information about this component.";
-
-                    infoPanel.style.display = "block";
-                });
-
-            });
-
-
-        // ==========================================
-        // SYSTEM UNIT CLICK
-        // ==========================================
+        /* =====================================
+           SYSTEM UNIT CLICK
+        ===================================== */
 
         systemUnit.addEventListener("click", function () {
 
-            this.setAttribute("visible", "false");
+            /*
+                Hide the outer case
+                and reveal the internal components.
+            */
 
-            internals.setAttribute("visible", "true");
+            systemUnit.setAttribute(
+                "visible",
+                "false"
+            );
+
+            internals.setAttribute(
+                "visible",
+                "true"
+            );
 
             componentTitle.innerText =
                 "System Unit";
 
             componentDescription.innerText =
-                "The system unit contains the motherboard, CPU, RAM, GPU, storage and power supply.";
+                descriptions["System Unit"];
 
-            infoPanel.style.display = "block";
+            infoPanel.style.display =
+                "block";
         });
 
 
-        // ==========================================
-        // CLOSE INFO
-        // ==========================================
+        /* =====================================
+           INTERNAL COMPONENT CLICK
+        ===================================== */
 
-        closeInfo.addEventListener("click", function () {
+        document
+            .querySelectorAll(".clickable")
+            .forEach(component => {
 
-            infoPanel.style.display = "none";
+                component.addEventListener(
+                    "click",
+                    function () {
 
-        });
+                        const name =
+                            this.getAttribute(
+                                "data-component"
+                            );
+
+                        if (!name) return;
+
+                        componentTitle.innerText =
+                            name;
+
+                        componentDescription.innerText =
+                            descriptions[name] ||
+                            "Information about this computer component.";
+
+                        infoPanel.style.display =
+                            "block";
+                    }
+                );
+
+            });
 
 
-        // ==========================================
-        // MARKER FOUND
-        // ==========================================
+        /* =====================================
+           CLOSE INFO
+        ===================================== */
 
-        marker.addEventListener("markerFound", function () {
+        closeInfo.addEventListener(
+            "click",
+            function () {
 
-            console.log("HIRO MARKER FOUND!");
+                infoPanel.style.display =
+                    "none";
 
-            computer.setAttribute(
-                "visible",
-                "true"
-            );
-
-        });
+            }
+        );
 
 
-        // ==========================================
-        // MARKER LOST
-        // ==========================================
+        /* =====================================
+           MARKER DETECTED
+        ===================================== */
 
-        marker.addEventListener("markerLost", function () {
+        marker.addEventListener(
+            "markerFound",
+            function () {
 
-            console.log("HIRO MARKER LOST");
+                console.log(
+                    "HIRO MARKER FOUND"
+                );
 
-        });
+                computer.setAttribute(
+                    "visible",
+                    "true"
+                );
+
+            }
+        );
+
+
+        /* =====================================
+           MARKER LOST
+        ===================================== */
+
+        marker.addEventListener(
+            "markerLost",
+            function () {
+
+                console.log(
+                    "HIRO MARKER LOST"
+                );
+
+            }
+        );
 
     </script>
 
